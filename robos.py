@@ -2,4 +2,5 @@
 
 class Robo:
     # Construtor da classe
-    def
+    def entrega(self):
+        print("O robo esta realizando uma entrega")
