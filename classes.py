@@ -1,16 +1,16 @@
-# Passo 1: Criar classe robo
+#Passo 1: Criar classse para robo
+#Passo 2: Criar Classe para pacote
 
 class Robo:
-    # Construtor da classe
     def __init__(self, id, capCargaKg):
         self.id = id
         self.capCargaKg = capCargaKg
 
-
-RoboLeve = Robo(str("RB-01"), int(10))
-
-RoboPesado = Robo(str("RB-02"), int(50))
-
+    def realizarEntergas(self):
+        if self.capCargakg >= Pacote.pesoKg:
+            print("O ", self.id, " pode realizar a entrega.")
+        else:
+            print("O ", self.id, " não pode ser realizada.")
 
 class Pacote:
     def __init__(self, conteudo, pesoKg, descricao, roboRespon):
