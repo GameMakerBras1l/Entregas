@@ -1,8 +1,7 @@
-from classes import Robo
-from classes import Pacote
+from classes import Robos
 
-RoboLeve = Robo(str("RB-01"), int(10))
+roboLeve = Robos(str("RB-01"), int(10))
+print(roboLeve.idRobo)
 
-RoboPesado = Robo(str("RB-02"), int(50))
-
-Maca = Pacote("Maçã", int(5), "uma sacola com varias maçãs", "")
+roboPesado = Robos(str("RB-02"), int(50))
+print(roboPesado.idRobo)
