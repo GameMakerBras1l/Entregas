@@ -1,7 +1,7 @@
 from classes import Robos
 
-roboLeve = Robos(str("RB-01"), int(10))
-print(roboLeve.idRobo)
+roboLeve = Robos("R1", 10)
+roboLeve.entregar_pacote()
 
-roboPesado = Robos(str("RB-02"), int(50))
-print(roboPesado.idRobo)
+roboPesado = Robos("R2", 50)
+roboPesado.entregar_pacote()
