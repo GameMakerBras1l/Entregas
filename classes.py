@@ -13,6 +13,4 @@ class Robos:
 
     def entregar_pacote(self, pacote):
         if self.capKg >= pacote.pesoKg:
-            print("Entrega realizada")
-        else:
-            print("Entrega negada")
+            print("Entrega encaminhada")

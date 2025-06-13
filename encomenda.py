@@ -12,4 +12,4 @@ elif 10 < peso <= 50:
     roboPesado = Robos("R2", 50)
     roboPesado.entregar_pacote(pacote)
 else:
-    print("Falha na entrega")
+    print("Excesso de peso, falha no encaminhamento do produto")
