@@ -15,7 +15,13 @@ class Robos:
     def __init__(self, idRobo, capKg):
         self.idRobo = idRobo
         self.capKg = capKg
+        self.falhaEntre = 0
+        self.sucessoEntre = 0
 
     def entregar_pacote(self, pacote):
         if self.capKg >= pacote.pesoTotal:
             print("Entrega encaminhada")
+
+            self.sucessoEntre += 1
+        else:
+            self.falhaEntre += 1
