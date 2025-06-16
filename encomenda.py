@@ -1,5 +1,4 @@
-from classes import Pacotes
-from classes import Robos
+from classes import Pacotes, Robos, RegistroEntregas
 
 lista_pacotes = [
     Pacotes(1, "Livro", 2, 1),
@@ -8,30 +7,45 @@ lista_pacotes = [
     Pacotes(4, "Jogo", 0.5, 1)
 ]
 
-print("Produtos disponíveis: ")
-for p in lista_pacotes:
-    print("ID: ", p.idProduto, " | Nome: ", p.conteudo, " | Peso Liquido: ", p.pesoKg, "Kg")
+registro = RegistroEntregas()
 
-idPacote = int(input("Digite o ID do produto: "))
-pacotEscolhido = next((p for p in lista_pacotes if p.idProduto == idPacote), None)
+while True:
+    print("\nProdutos disponíveis:")
+    for p in lista_pacotes:
+        print(f"ID: {p.idProduto} | Nome: {p.conteudo} | Peso (kg): {p.pesoKg}")
 
-if pacotEscolhido:
-    qtd = int(input(f"Digite a quantidade de '{pacotEscolhido.conteudo}' desejada: "))
-    pacotEscolhido.atualizar_quantidade(qtd)
-    pesoEntrega = pacotEscolhido.pesoTotal
+    escolha = input("Digite o ID do produto (ou 'S' para sair): ")
+    if escolha.lower() == 's':
+        break
 
-    print(f"\nProduto selecionado: {pacotEscolhido.conteudo}")
-    print(f"Quantidade: {qtd}")
-    print(f"Peso total: {pesoEntrega}kg")
+    if not escolha.isdigit():
+        print("ID inválido, tente novamente.")
+        continue
 
-    # Seleção do robô com base no peso
-    if pesoEntrega <= 10:
+    idPacote = int(escolha)
+    pacote = next((p for p in lista_pacotes if p.idProduto == idPacote), None)
+    if pacote is None:
+        print("Produto não encontrado, tente de novo.")
+        continue
+
+    qtd_input = input(f"Quantidade de '{pacote.conteudo}': ")
+    if not qtd_input.isdigit() or int(qtd_input) < 0:
+        print("Quantidade inválida.")
+        continue
+
+    qtd = int(qtd_input)
+    pacote.atualizar_quantidade(qtd)
+    peso = pacote.pesoTotal
+    print(f"Peso total do pacote: {peso} kg")
+
+    if peso <= 10:
         robo = Robos("RB-01", 10)
-        robo.entregar_pacote(pacotEscolhido)
-    elif 10 < pesoEntrega <= 50:
+        registro.registrar(robo, pacote)
+    elif peso <= 50:
         robo = Robos("RB-02", 50)
-        robo.entregar_pacote(pacotEscolhido)
+        registro.registrar(robo, pacote)
     else:
-        print("Excesso de peso, falha no encaminhamento do produto.")
-else:
-    print("Produto com esse ID não encontrado.")
+        print("Excesso de peso — entrega falhou.")
+
+print("Resumo das entregas:")
+registro.resumo()
