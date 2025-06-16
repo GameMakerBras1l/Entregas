@@ -2,13 +2,15 @@
 # Passo 2: criar um sistema de entergas usando essas classes
 
 class Pacotes:
-    def __init__(self, conteudo, pesoKg, numProdutos):
+    def __init__(self, idProtduto, conteudo, pesoKg, numProdutos):
+        self.idProduto = idProtduto
         self.conteudo = conteudo
         self.pesoKg = pesoKg
         self.numProdutos = numProdutos
         self.pesoTotal = self.numProdutos * self.pesoKg
 
-    def num_produtos(self):
+    def atualizar_quantidade(self, nova_qtd):
+        self.numProdutos = nova_qtd
         return self.pesoTotal
 
 class Robos:
